@@ -151,34 +151,40 @@ $(document).ready(function () {
             question: "What is the range of missile 'Akash'?"
         }
     ];
+
     let currentQuestionIndex = 0;
+    let countOfCorrectAnswers = 0;
 
     function displayQuestion(index) {
         let question = data[index];
         $('#question').text(question.question);
-        $('#opinions').empty(); // Clear previous options
-        let countOfCorrectAnswers = 0;
+        $('#opinions').empty();
         $.each(question.content, function (index, option) {
             let btn = $('<input type="button" style="text-align: center" value="' + option + '">');
             btn.click(function () {
                 if (index === question.correct) {
                     alert('Correct!');
                     currentQuestionIndex++;
+                    countOfCorrectAnswers++
                     if (currentQuestionIndex < data.length) {
                         displayQuestion(currentQuestionIndex);
-                        countOfCorrectAnswers++
-                        $('#show').text('Correct answer ' + countOfCorrectAnswers);
                     } else {
-                        alert('No more questions!');
+                        $('#question').text('Correct answer !!! ' + countOfCorrectAnswers);
+                        $('#opinions').hide()
+                        $('#startAgainButton').show();
                     }
                 } else {
                     alert('Incorrect!');
                     currentQuestionIndex++;
                     if (currentQuestionIndex < data.length) {
                         displayQuestion(currentQuestionIndex);
-                    } else {
-                        alert('No more questions!');
                     }
+                     else {
+                        $('#question').text('Correct answer !!! ' + countOfCorrectAnswers );
+                        $('#opinions').hide()
+                        $('#startAgainButton').show();
+                    }
+
                 }
             });
             $('#opinions').append(btn);
@@ -187,9 +193,12 @@ $(document).ready(function () {
 
     displayQuestion(currentQuestionIndex);
 
+
     $('#startAgainButton').click(function () {
         alert('You start the game again')
+        $('#opinions').show()
         currentQuestionIndex = 0;
+        countOfCorrectAnswers = 0
         displayQuestion(currentQuestionIndex);
     });
 });
