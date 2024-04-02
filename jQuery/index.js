@@ -195,7 +195,7 @@ $(document).ready(function () {
         });
     }
 
-    $('#fiftyFifty').click(function(){
+    $('#fiftyFifty').click(function () {
         alert("You're taking a 50/50 chance")
         let question = data[currentQuestionIndex];
         let incorrectIndexes = [];
@@ -216,7 +216,7 @@ $(document).ready(function () {
         while (indexes.length < count) {
             let randomIndex = Math.floor(Math.random() * maxRange);
             console.log(maxRange, 'Max range')
-            console.log(Math.random() * maxRange, 'random ')
+            console.log(Math.random() * maxRange, 'random * maxRange ')
             console.log(Math.floor(Math.random() * maxRange), 'random ')
             if (!indexes.includes(randomIndex)) {
                 indexes.push(randomIndex);
@@ -225,10 +225,27 @@ $(document).ready(function () {
         return indexes;
     }
 
+    $('#showCorrect').click(function () {
+        alert("Show Correct answer")
+        let question = data[currentQuestionIndex]
+        let incorrect = []
+        for (let i = 0; i < question.content.length; i++) {
+            if (i !== question.correct) {
+                incorrect.push(i)
+            }
+        }
+        for (let i = 0; i < incorrect.length; i++) {
+            $('#opinions').children('.op').eq(incorrect[i]).hide();
+        }
+        $('#showCorrect').hide()
+    })
+
+
     displayQuestion(currentQuestionIndex);
     $('#startAgainButton').click(function () {
         alert('You start the game again')
         $('#startAgainButton').hide()
+        $('#showCorrect').show()
         $('#opinions').show()
         currentQuestionIndex = 0;
         countOfCorrectAnswers = 0
