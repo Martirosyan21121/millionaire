@@ -154,6 +154,7 @@ $(document).ready(function () {
 
     let currentQuestionIndex = 0;
     let countOfCorrectAnswers = 0;
+    $('#startAgainButton').hide()
 
     function displayQuestion(index) {
         let question = data[index];
@@ -162,6 +163,7 @@ $(document).ready(function () {
         $.each(question.content, function (index, option) {
             let btn = $('<input type="button" class="op" style="text-align: center" value="' + option + '">');
             btn.click(function () {
+                $('#startAgainButton').show()
                 if (index === question.correct) {
                     alert('Correct!');
                     currentQuestionIndex++;
@@ -172,6 +174,7 @@ $(document).ready(function () {
                         $('#question').text('Correct answer !!! ' + countOfCorrectAnswers);
                         $('#opinions').hide()
                         $('#startAgainButton').show();
+                        $('#fiftyFifty').hide();
                     }
                 } else {
                     alert('Incorrect!');
@@ -182,8 +185,8 @@ $(document).ready(function () {
                         $('#question').text('Correct answer !!! ' + countOfCorrectAnswers);
                         $('#opinions').hide()
                         $('#startAgainButton').show();
+                        $('#fiftyFifty').hide();
                     }
-
                 }
             });
 
@@ -193,7 +196,7 @@ $(document).ready(function () {
     }
 
     $('#fiftyFifty').click(function(){
-        alert("50 / 50")
+        alert("You're taking a 50/50 chance")
         let question = data[currentQuestionIndex];
         let incorrectIndexes = [];
         for (let i = 0; i < question.content.length; i++) {
@@ -212,6 +215,9 @@ $(document).ready(function () {
         let indexes = [];
         while (indexes.length < count) {
             let randomIndex = Math.floor(Math.random() * maxRange);
+            console.log(maxRange, 'Max range')
+            console.log(Math.random() * maxRange, 'random ')
+            console.log(Math.floor(Math.random() * maxRange), 'random ')
             if (!indexes.includes(randomIndex)) {
                 indexes.push(randomIndex);
             }
@@ -222,6 +228,7 @@ $(document).ready(function () {
     displayQuestion(currentQuestionIndex);
     $('#startAgainButton').click(function () {
         alert('You start the game again')
+        $('#startAgainButton').hide()
         $('#opinions').show()
         currentQuestionIndex = 0;
         countOfCorrectAnswers = 0

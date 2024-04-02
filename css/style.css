@@ -32,6 +32,7 @@ body {
     cursor: pointer;
     box-sizing: border-box;
 }
+
 .question-box {
     background-color: darkgreen;
     color: white;
@@ -47,12 +48,13 @@ body {
 
 .calculator input[type="button"].equals {
     width: 30%;
-    margin-left: 80px;
+    margin-bottom: auto;
     color: #fff;
     font-size: 20px;
     background-color: #002480;
     border-color: #002480;
 }
+
 .calculator input[type="button"].equals:hover {
     background-color: rgba(0, 14, 65, 0.63);
 }
