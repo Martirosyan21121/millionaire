@@ -193,6 +193,7 @@ $(document).ready(function () {
     }
 
     $('#fiftyFifty').click(function(){
+        alert("50 / 50")
         let question = data[currentQuestionIndex];
         let incorrectIndexes = [];
         for (let i = 0; i < question.content.length; i++) {
@@ -205,7 +206,6 @@ $(document).ready(function () {
             $('#opinions').children('.op').eq(incorrectIndexes[indexesToRemove[i]]).hide();
         }
         $('#fiftyFifty').hide()
-
     });
 
     function getRandomIndexes(maxRange, count) {
@@ -227,6 +227,4 @@ $(document).ready(function () {
         countOfCorrectAnswers = 0
         displayQuestion(currentQuestionIndex);
     });
-
-
 });
