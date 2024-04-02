@@ -46,14 +46,15 @@ body {
 }
 
 .calculator input[type="button"].equals {
-    width: 15%;
+    width: 30%;
+    margin-left: 80px;
     color: #fff;
-    font-size: 22px;
-    background-color: green;
-    border-color: green;
+    font-size: 20px;
+    background-color: #002480;
+    border-color: #002480;
 }
 .calculator input[type="button"].equals:hover {
-    background-color: rgba(30, 117, 0, 0.63);
+    background-color: rgba(0, 14, 65, 0.63);
 }
 
 .calculator input[type="button"].clear {

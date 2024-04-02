@@ -160,7 +160,7 @@ $(document).ready(function () {
         $('#question').text(question.question);
         $('#opinions').empty();
         $.each(question.content, function (index, option) {
-            let btn = $('<input type="button" style="text-align: center" value="' + option + '">');
+            let btn = $('<input type="button" class="op" style="text-align: center" value="' + option + '">');
             btn.click(function () {
                 if (index === question.correct) {
                     alert('Correct!');
@@ -178,22 +178,48 @@ $(document).ready(function () {
                     currentQuestionIndex++;
                     if (currentQuestionIndex < data.length) {
                         displayQuestion(currentQuestionIndex);
-                    }
-                     else {
-                        $('#question').text('Correct answer !!! ' + countOfCorrectAnswers );
+                    } else {
+                        $('#question').text('Correct answer !!! ' + countOfCorrectAnswers);
                         $('#opinions').hide()
                         $('#startAgainButton').show();
                     }
 
                 }
             });
+
             $('#opinions').append(btn);
+            $('#fiftyFifty').show()
         });
     }
 
+    $('#fiftyFifty').click(function(){
+        let question = data[currentQuestionIndex];
+        let incorrectIndexes = [];
+        for (let i = 0; i < question.content.length; i++) {
+            if (i !== question.correct) {
+                incorrectIndexes.push(i);
+            }
+        }
+        let indexesToRemove = getRandomIndexes(incorrectIndexes.length, 2);
+        for (let i = 0; i < indexesToRemove.length; i++) {
+            $('#opinions').children('.op').eq(incorrectIndexes[indexesToRemove[i]]).hide();
+        }
+        $('#fiftyFifty').hide()
+
+    });
+
+    function getRandomIndexes(maxRange, count) {
+        let indexes = [];
+        while (indexes.length < count) {
+            let randomIndex = Math.floor(Math.random() * maxRange);
+            if (!indexes.includes(randomIndex)) {
+                indexes.push(randomIndex);
+            }
+        }
+        return indexes;
+    }
+
     displayQuestion(currentQuestionIndex);
-
-
     $('#startAgainButton').click(function () {
         alert('You start the game again')
         $('#opinions').show()
@@ -201,4 +227,6 @@ $(document).ready(function () {
         countOfCorrectAnswers = 0
         displayQuestion(currentQuestionIndex);
     });
+
+
 });
