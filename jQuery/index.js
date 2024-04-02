@@ -171,10 +171,11 @@ $(document).ready(function () {
                     if (currentQuestionIndex < data.length) {
                         displayQuestion(currentQuestionIndex);
                     } else {
-                        $('#question').text('Correct answer !!! ' + countOfCorrectAnswers);
+                        $('#question').text('Correct answer !!! ' + countOfCorrectAnswers + ' / 15');
                         $('#opinions').hide()
                         $('#startAgainButton').show();
                         $('#fiftyFifty').hide();
+                        $('#showCorrect').hide();
                     }
                 } else {
                     alert('Incorrect!');
@@ -182,14 +183,14 @@ $(document).ready(function () {
                     if (currentQuestionIndex < data.length) {
                         displayQuestion(currentQuestionIndex);
                     } else {
-                        $('#question').text('Correct answer !!! ' + countOfCorrectAnswers);
+                        $('#question').text('Correct answer !!! ' + countOfCorrectAnswers + ' / 15');
                         $('#opinions').hide()
                         $('#startAgainButton').show();
                         $('#fiftyFifty').hide();
+                        $('#showCorrect').hide();
                     }
                 }
             });
-
             $('#opinions').append(btn);
             $('#fiftyFifty').show()
         });
@@ -239,7 +240,6 @@ $(document).ready(function () {
         }
         $('#showCorrect').hide()
     })
-
 
     displayQuestion(currentQuestionIndex);
     $('#startAgainButton').click(function () {
