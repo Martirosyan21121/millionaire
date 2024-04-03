@@ -154,7 +154,7 @@ $(document).ready(function () {
 
     let currentQuestionIndex = 0;
     let countOfCorrectAnswers = 0;
-    let maxUse = 0;
+    let maxUse = 1;
 
     $('#startAgainButton').hide()
 
@@ -194,7 +194,7 @@ $(document).ready(function () {
                 }
             });
             $('#opinions').append(btn);
-            if (maxUse <= 2) {
+            if (maxUse <= 3) {
                 console.log(maxUse , 'Count')
                 $('#fiftyFifty').show()
             }
@@ -202,7 +202,7 @@ $(document).ready(function () {
     }
 
     $('#fiftyFifty').click(function () {
-        alert("You're taking a 50/50 chance")
+        alert(`You're taking a 50/50 chance ${maxUse} time`)
         maxUse++
         console.log(maxUse, "Max Use 50 / 50")
         let question = data[currentQuestionIndex];
@@ -255,7 +255,7 @@ $(document).ready(function () {
         $('#showCorrect').show()
         $('#fiftyFifty').show()
         $('#opinions').show()
-        maxUse = 0
+        maxUse = 1
         currentQuestionIndex = 0
         countOfCorrectAnswers = 0
         displayQuestion(currentQuestionIndex);
