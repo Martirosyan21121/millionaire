@@ -245,6 +245,7 @@ $(document).ready(function () {
         for (let i = 0; i < incorrect.length; i++) {
             $('#opinions').children('.op').eq(incorrect[i]).hide();
         }
+        $('#fiftyFifty').hide()
         $('#showCorrect').hide()
     })
 
