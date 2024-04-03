@@ -154,6 +154,8 @@ $(document).ready(function () {
 
     let currentQuestionIndex = 0;
     let countOfCorrectAnswers = 0;
+    let maxUse = 0;
+
     $('#startAgainButton').hide()
 
     function displayQuestion(index) {
@@ -192,12 +194,17 @@ $(document).ready(function () {
                 }
             });
             $('#opinions').append(btn);
-            $('#fiftyFifty').show()
+            if (maxUse <= 2) {
+                console.log(maxUse , 'Count')
+                $('#fiftyFifty').show()
+            }
         });
     }
 
     $('#fiftyFifty').click(function () {
         alert("You're taking a 50/50 chance")
+        maxUse++
+        console.log(maxUse, "Max Use 50 / 50")
         let question = data[currentQuestionIndex];
         let incorrectIndexes = [];
         for (let i = 0; i < question.content.length; i++) {
@@ -246,8 +253,10 @@ $(document).ready(function () {
         alert('You start the game again')
         $('#startAgainButton').hide()
         $('#showCorrect').show()
+        $('#fiftyFifty').show()
         $('#opinions').show()
-        currentQuestionIndex = 0;
+        maxUse = 0
+        currentQuestionIndex = 0
         countOfCorrectAnswers = 0
         displayQuestion(currentQuestionIndex);
     });
