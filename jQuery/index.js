@@ -149,7 +149,7 @@ $(document).ready(function () {
                 "150 km"
             ],
             question: "What is the range of missile 'Akash'?"
-        }
+     }
     ];
 
     let currentQuestionIndex = 0;
@@ -162,6 +162,7 @@ $(document).ready(function () {
         let question = data[index];
         $('#question').text(question.question);
         $('#opinions').empty();
+
         $.each(question.content, function (index, option) {
             let btn = $('<input type="button" class="op" style="text-align: center" value="' + option + '">');
             btn.click(function () {
